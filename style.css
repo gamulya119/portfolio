@@ -571,6 +571,52 @@ table td {
   color: #d7e0f0;
 }
 
+.timeline-container {
+  position: relative;
+  margin: 2rem 0;
+  padding-left: 1.5rem;
+  border-left: 2px solid rgba(94, 247, 255, 0.18);
+}
+
+.timeline-container .panel {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-left: 1.4rem;
+}
+
+.timeline-container .panel::before {
+  content: "";
+  position: absolute;
+  left: -1.15rem;
+  top: 0.8rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #00adb5;
+  box-shadow: 0 0 0 4px rgba(0, 173, 181, 0.15);
+}
+
+.timeline-container h2 {
+  margin-top: 0;
+}
+
+@media (max-width: 680px) {
+  .timeline-container {
+    margin: 1.5rem 0;
+    padding-left: 1rem;
+  }
+
+  .timeline-container .panel {
+    padding-left: 1.1rem;
+  }
+
+  .timeline-container .panel::before {
+    left: -0.95rem;
+    width: 12px;
+    height: 12px;
+  }
+}
+
 .contact-panel p {
   margin: 0.85rem 0;
 }
