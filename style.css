@@ -276,6 +276,11 @@ body {
 
   .hero-photo {
     margin: 0 auto;
+    max-width: min(200px, 35vw);
+  }
+
+  .hero-panel {
+    text-align: center;
   }
 }
 
@@ -428,6 +433,11 @@ main {
 @media (max-width: 640px) {
   .skills-pair {
     grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .skills-card {
+    padding: 1rem 1.1rem;
   }
 }
 
@@ -444,6 +454,39 @@ main {
 
 .skills-grid li {
   margin-bottom: 0.55rem;
+}
+
+.protocol-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.protocol-card {
+  background: rgba(7, 35, 65, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  padding: 1.35rem;
+  box-shadow: inset 0 0 0 1px rgba(63, 193, 255, 0.06), 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+.protocol-card h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+.protocol-card p {
+  margin: 0;
+  color: #d7e0f0;
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .protocol-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .intro-grid {
@@ -479,6 +522,7 @@ main {
 @media (max-width: 860px) {
   .intro-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }
 
@@ -490,26 +534,37 @@ main {
 
 @media (max-width: 760px) {
   .artifact-grid {
-    gap: 1.25rem;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
 }
 
 @media (max-width: 680px) {
   .page-shell {
-    padding: 1.75rem 1rem 2rem;
+    padding: 1rem 0.75rem 1.5rem;
   }
 
   .nav-link {
-    padding: 0.65rem 0.95rem;
-    font-size: 0.95rem;
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
   }
 
   .hero, .hero-section {
-    padding: 1.4rem;
+    padding: 1.2rem;
   }
 
   .panel {
-    padding: 1.25rem;
+    padding: 1rem;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero img {
+    width: min(120px, 30vw);
+    height: min(120px, 30vw);
   }
 }
 
@@ -772,85 +827,391 @@ body {
   background: #00c4cc;
 }
 
-footer {
-  text-align: center;
-  color: #7b8ca1;
-  padding: 1.25rem 0;
+/* --- Additional Responsive Improvements --- */
+
+/* Ensure proper viewport handling */
+html {
+  scroll-behavior: smooth;
 }
 
-/* --- Mobile Responsiveness --- */
-@media (max-width: 768px) {
-  /* General Padding */
+/* Better image handling */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Improve button and link touch targets */
+.primary-button {
+  display: inline-block;
+  margin-top: 1rem;
+  background: #00adb5;
+  color: #091921;
+  text-decoration: none;
+  font-weight: 600;
+  padding: clamp(0.9rem, 2.5vw, 1.2rem) clamp(1.4rem, 4vw, 2rem);
+  border-radius: 999px;
+  transition: background 0.25s ease;
+  min-height: 44px; /* Minimum touch target */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+}
+
+.artifact-link {
+  color: #7fe3ff;
+  font-weight: 700;
+  text-decoration: none;
+  margin-top: auto;
+  padding: 0.5rem 0;
+  display: inline-block;
+  min-height: 44px; /* Ensure touch target */
+  display: flex;
+  align-items: center;
+}
+
+/* Better focus states for accessibility */
+.nav-link:focus,
+.back-link:focus,
+.primary-button:focus,
+.artifact-link:focus {
+  outline: 2px solid #00d2ff;
+  outline-offset: 2px;
+}
+
+/* Prevent horizontal scroll issues */
+body {
+  overflow-x: hidden;
+}
+
+/* Improve container max-widths for larger screens */
+@media (min-width: 1400px) {
   .page-shell {
-    padding: 10px;
+    max-width: 1400px;
   }
-  .panel, .hero-section {
-    padding: 20px 15px;
+}
+
+/* --- Base Responsive Layout --- */
+.page-shell {
+  width: min(100%, 1200px);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem clamp(1rem, 4vw, 2rem);
+}
+
+/* Convert fixed widths to relative units */
+.hero-photo {
+  width: 100%;
+  max-width: min(260px, 30vw);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 0 0 rgba(45, 218, 255, 0.22);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Improve touch targets for navigation */
+.nav-link {
+  color: #e9f6ff;
+  text-decoration: none;
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 1.5rem);
+  border-radius: 999px;
+  font-weight: 600;
+  transition: color 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+  min-height: 44px; /* Minimum touch target */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-link {
+  color: #e9f6ff;
+  text-decoration: none;
+  font-weight: 700;
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 1.5rem);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+  min-height: 44px; /* Minimum touch target */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tab navigation improvements */
+.nav-group {
+  display: flex;
+  gap: clamp(0.5rem, 2vw, 1rem);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* --- Tablet Breakpoint (1024px and below) --- */
+@media (max-width: 1024px) {
+  .page-shell {
+    padding: 1.5rem clamp(1rem, 3vw, 1.5rem);
   }
 
-  /* Hero Section Restructuring */
+  .hero-section-inner {
+    grid-template-columns: minmax(200px, 35%) minmax(0, 65%);
+    gap: 1.5rem;
+  }
+
+  .hero-photo {
+    max-width: min(220px, 28vw);
+  }
+
+  .hero-panel h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+
+  .artifact-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .skills-pair {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+/* --- Mobile Breakpoint (768px and below) --- */
+@media (max-width: 768px) {
+  .page-shell {
+    padding: 1rem 1rem 2rem;
+  }
+
+  /* Tab consistency - make tabs horizontally scrollable */
+  .nav-group.nav-right-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    max-width: 100%;
+    padding-bottom: 0.5rem;
+  }
+
+  .nav-group.nav-right-tabs::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  .nav-group.nav-right-tabs .nav-link {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  /* Stack navigation vertically on very small screens */
+  @media (max-width: 480px) {
+    .site-nav.has-back {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 1rem;
+    }
+
+    .nav-group.nav-right-tabs {
+      overflow-x: visible;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .nav-group.nav-right-tabs .nav-link {
+      justify-content: center;
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+  }
+
+  /* Hero section mobile layout */
   .hero-section-inner {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: 1.5rem;
   }
+
   .hero-photo {
-    margin-bottom: 20px;
-    width: 150px;
-    height: 150px;
+    max-width: min(180px, 40vw);
+    margin: 0 auto;
   }
-  
-  /* Center About Me text on mobile */
+
+  .hero-panel {
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .hero-panel h1 {
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+  }
+
+  .hero-panel h2 {
+    font-size: 1.1rem;
+  }
+
   .hero-panel p {
-    text-align: left;
+    font-size: 1rem;
+    line-height: 1.7;
   }
 
-  /* Skills Grid Stacking */
+  /* Grid layouts for mobile */
+  .artifact-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
   .skills-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    gap: 0.75rem;
   }
+
   .skills-pair {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
   }
 
-  /* Typography Scaling */
-  h1 { font-size: 2rem; }
-  h2 { font-size: 1.5rem; }
-  h3 { font-size: 1.25rem; }
+  .intro-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
 
-  /* Timeline Adjustments */
+  /* Panel spacing */
+  .panel {
+    padding: clamp(1rem, 3vw, 1.25rem);
+  }
+
+  .hero, .hero-section {
+    padding: clamp(1.25rem, 3vw, 1.5rem);
+  }
+
+  /* Typography scaling */
+  h1 {
+    font-size: clamp(1.75rem, 5vw, 2.25rem);
+  }
+
+  h2 {
+    font-size: clamp(1.25rem, 4vw, 1.5rem);
+  }
+
+  h3 {
+    font-size: clamp(1.1rem, 3vw, 1.25rem);
+  }
+
+  .panel p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  /* Timeline adjustments */
   .timeline-container {
-    width: 100%;
-    padding: 0 10px;
+    padding: 0 0.5rem;
   }
-  
-  /* Navigation Adjustments */
-  .site-nav {
-    flex-direction: column;
-    gap: 15px;
-    padding: 15px;
+
+  .timeline-container .timeline-item {
+    padding: 1.25rem;
   }
-  .nav-right-tabs {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    gap: 15px;
+
+  /* Table responsiveness */
+  table {
+    font-size: 0.9rem;
+  }
+
+  table th,
+  table td {
+    padding: 0.6rem 0.8rem;
+  }
+
+  /* Contact section */
+  .contact-panel p {
+    font-size: 0.95rem;
   }
 }
 
-@media (max-width: 680px) {
-  .hero {
-    flex-direction: column;
-    text-align: center;
+/* --- Small Mobile Breakpoint (480px and below) --- */
+@media (max-width: 480px) {
+  .page-shell {
+    padding: 0.75rem 0.75rem 1.5rem;
   }
 
-  .hero img {
-    width: 110px;
-    height: 110px;
+  .hero-photo {
+    max-width: min(140px, 35vw);
+  }
+
+  .hero-panel {
+    padding: 1rem;
+  }
+
+  .hero-panel h1 {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+  }
+
+  .hero-panel p {
+    font-size: 0.9rem;
+  }
+
+  .panel {
+    padding: 1rem;
+    border-radius: 16px;
+  }
+
+  .artifact-card {
+    padding: 1.25rem;
+  }
+
+  .card-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+  }
+
+  .artifact-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .artifact-copy {
+    font-size: 0.9rem;
+  }
+
+  /* Skills cards */
+  .skills-card {
+    padding: 0.9rem 1rem;
+  }
+
+  .skill-progress h3 {
+    font-size: 0.95rem;
+  }
+
+  /* Navigation improvements */
+  .site-nav {
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
+
+  .nav-link {
+    padding: 0.8rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .back-link {
+    padding: 0.8rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  /* Timeline improvements */
+  .timeline-container .timeline-item:not(:last-child)::after {
+    font-size: 1.5rem;
+    bottom: -25px;
+  }
+
+  /* Blockquote adjustments */
+  blockquote {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+
+  blockquote span {
+    font-size: 0.85rem;
   }
 }
